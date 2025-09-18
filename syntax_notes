@@ -1,0 +1,9 @@
+******SCP********* 
+#Copy a local file to a remote server:
+scp /path/to/local/file.txt user@remote_host:/path/to/remote/directory/
+
+#Copy a file from a remote server to the local machine: 
+scp user@remote_host:/path/to/remote/file.txt /path/to/local/directory/
+
+#Copy a directory recursively from local to remote:
+scp -r /path/to/local/directory/ user@remote_host:/path/to/remote/
