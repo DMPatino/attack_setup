@@ -13,3 +13,31 @@ On the receiving machine
     nc -l -p 12345 > received_document.txt
 On the sending machine
     nc <receiver_IP> 12345 < document.txt
+
+================================================
+--------------ATTACKER NAVIGATION---------------
+================================================
+
+***Instructor access to environment**
+#ssh -J cvte@10.50.13.168 ocelot@172.24.xx.xx -X     .101-105 for attacker
+#10.50.13.168 will be replaced with NSX_Nat_instructor_attacker 
+
+*****From cvte OPs Station to JumpBox*****
+scp cvte@10.50.X.X:/path/to/remote/file.txt /path/to/local/directory/
+---------10.50.X.X(NSX_Nat_instructor_attacker)
+
+*******JumpBox to ocelot*********
+#scp document.ext ocelot@172.24.xx.xx:/path/to/remote/file.txt
+
+*******From ocelot to compromised machine*******
+On compromised machine
+#scp ocelot@172.24.xx.xx:/path/to/remote/file.txt /path/to/local/directory/
+
+*******From ocelot to JumpBox*******
+On OPS stations (Debian LX Terminal)
+#ssh -D 9050 cvte@10.50.xx.xx (NSX_Nat_instructor_attacker)
+#scp ocelot@172.24.xx.xx:/path/to/remote/file.txt /path/to/local/directory/
+
+*****From JumpBox to cvte OPs Station*****
+scp cvte@10.50.X.X:/path/to/remote/file.txt /path/to/local/directory/
+---------10.50.X.X(ip -a on cvte@debian)
