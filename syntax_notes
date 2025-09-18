@@ -7,3 +7,9 @@ scp user@remote_host:/path/to/remote/file.txt /path/to/local/directory/
 
 #Copy a directory recursively from local to remote:
 scp -r /path/to/local/directory/ user@remote_host:/path/to/remote/
+
+********Netcat********
+On the receiving machine
+    nc -l -p 12345 > received_document.txt
+On the sending machine
+    nc <receiver_IP> 12345 < document.txt
