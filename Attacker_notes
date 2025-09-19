@@ -7,8 +7,8 @@ git clone https://github.com/DMPatino/attack_setup
 ================================================
 
 ***Instructor access to environment**
-#ssh -J cvte@10.50.13.168 ocelot@172.24.xx.xx -X     .101-105 for attacker
-#10.50.13.168 will be replaced with NSX_Nat_instructor_attacker 
+#ssh -J cvte@10.50.X.X ocelot@172.24.xx.xx -X     .101-105 for attacker
+#10.50.X.X will be replaced with NSX_Nat_instructor_attacker 
 
 *****From cvte OPs Station to JumpBox*****
 scp cvte@10.50.X.X:/path/to/remote/file.txt /path/to/local/directory/
@@ -33,4 +33,4 @@ scp cvte@10.50.X.X:/path/to/remote/file.txt /path/to/local/directory/
 ******From OPS station to Windows*******
 Inside the Windows open a termninal on the Downloads folder or somewhere easy to get in
 get the ip -a of the debian box 
-scp cvte@10.50.179.17:~/test test
+scp cvte@10.50.X.X:~/test test
