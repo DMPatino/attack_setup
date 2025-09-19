@@ -6,10 +6,10 @@ mkhomedir_helper defcender
 cat /etc/passwd
 
 Class 25-003 CyBOLC
-Windows box: 10.50.133.63
-Debian cvte: 10.50.179.17
-Attacker: 10.50.160.17
-WAN RTR: 10.50.160.5
+Windows box: 10.50.X.X
+Debian cvte: 10.50.X.X
+Attacker: 10.50.X.X
+WAN RTR: 10.50.X.X
 
 Linux: 172.24.18.99 Pop the *Dam *Accounts no binary changes do not touch this box after initial dam pop
 
@@ -47,4 +47,5 @@ cat /dev/null > /var/log/btmp
 
 /var/www/html/_pgbackup
 index_155777666.html
+
 
