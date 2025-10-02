@@ -1,25 +1,47 @@
-Start setting up the attack by git cloning my repo with the needed stuff
-on the OPS_station
-git clone https://github.com/DMPatino/attack_setup
-
 ================================================
 --------------ATTACKER NAVIGATION---------------
 ================================================
 
 ***Instructor access to environment**
+On the OPs Station
 #ssh -J cvte@10.50.X.X ocelot@172.24.xx.xx -X     .101-105 for attacker
-#10.50.X.X will be replaced with NSX_Nat_instructor_attacker 
+#10.50.X.X will be replaced with NSX_Nat_instructor_attacker (Destination address)
+
+Start setting up the attack by git cloning my repo with the needed stuff
+on the OPS_station
+git clone https://github.com/DMPatino/attack_setup
+then 
+tar tar -czvf attack_setup.tar.gz attack_setup
+python3 -m http.server
+
+To access the jump box directly 
+ssh cvte@10.50.X.X
+#10.50.X.X will be replaced with NSX_Nat_instructor_attacker (Destination address)
+
+From here you can move the compressed directory for the attack setup.
+wget http://10.50.X.X:8000/attack_setup.tar.gz 
+(this will be the ip form the Ops Station, where you spun up the python server)
+
+*******JumpBox to ocelot*********
+#scp attack_setup.tar.gz ocelot@172.24.24.101:~/
+
+*******From ocelot to compromised machine*******
+decompress the directory we just got in
+tar -xzvf attack_setup.tar.gz
+
+On compromised machine
+#scp ocelot@172.24.24.101:/path/to/remote/file.txt /path/to/local/directory/
+
+
+
+
+
+
+
 
 *****From cvte OPs Station to JumpBox*****
 scp cvte@10.50.X.X:/path/to/remote/file.txt /path/to/local/directory/
 ---------10.50.X.X(NSX_Nat_instructor_attacker)
-
-*******JumpBox to ocelot*********
-#scp document.ext ocelot@172.24.xx.xx:/path/to/remote/file.txt
-
-*******From ocelot to compromised machine*******
-On compromised machine
-#scp ocelot@172.24.xx.xx:/path/to/remote/file.txt /path/to/local/directory/
 
 *******From ocelot to JumpBox*******
 On OPS stations (Debian LX Terminal)
