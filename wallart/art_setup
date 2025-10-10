@@ -1,0 +1,19 @@
+#ART SERVICE
+#save the file as /usr/local/bin/ascii_broadcast.sh
+#make it executable
+#sudo chmod +x /usr/local/bin/ascii_broadcast.sh
+
+#nano /etc/systemd/system/ascii_broadcast.service
+#paste the code below
+
+[Unit]
+Description=ASCII Art Broadcast Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/ascii_broadcast.sh
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
