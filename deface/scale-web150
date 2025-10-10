@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Image Display</title>
+  <style>
+    /* Reset margins and make the page take full height */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #000; /* You can change this */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* The image will scale while keeping aspect ratio */
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 100vw;
+      max-height: 100vh;
+      object-fit: contain;
+      border-radius: 10px; /* Optional rounded corners */
+    }
+  </style>
+</head>
+<body>
+  <img src="Gr33ntity.png" alt="Displayed Image">
+</body>
+</html>
