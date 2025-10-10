@@ -8,7 +8,7 @@
 #place all your ASCII .txt files in /opt/ascii_art/
 
 [Unit]
-Description=ASCII Art Broadcast Service
+Description=ART Service
 After=network.target
 
 [Service]
