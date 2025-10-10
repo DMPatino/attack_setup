@@ -2,14 +2,10 @@
 #save the file as /usr/local/bin/ascii_broadcast.sh
 #make it executable
 #sudo chmod +x /usr/local/bin/ascii_broadcast.sh
-
-#nano /etc/systemd/system/ascii_broadcast.service
-#paste the code below
 #place all your ASCII .txt files in /opt/ascii_art/
 
-
+#Creates ART Service
 cat <<EOL | sudo tee /etc/systemd/system/ascii_broadcast.service > /dev/null
-
 [Unit]
 Description=ART Service
 After=network.target
