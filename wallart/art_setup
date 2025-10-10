@@ -5,6 +5,7 @@
 
 #nano /etc/systemd/system/ascii_broadcast.service
 #paste the code below
+#place all your ASCII .txt files in /opt/ascii_art/
 
 [Unit]
 Description=ASCII Art Broadcast Service
