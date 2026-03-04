@@ -2,6 +2,7 @@ PowerShell Empire
 # cd /Empire
 #powershell-empire server
 #powershell-empire client
+#starkiller
 ---Access Empire GUI "Starkiller" through a browser on port 1337
 ---empireadmin
 ---password123
