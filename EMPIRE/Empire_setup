@@ -8,6 +8,7 @@ PowerShell Empire
 ---password123
 ---Create an http listener
 ---submit
+Go to stagers on the left menu and it create
 ---Next is creating a stager, this will be the code on the target reaching back to our server
 ---Download the file and get it to yuor target machine in this case my stager is "launcher.sh"
 ---start a python server on the directory the file lives
