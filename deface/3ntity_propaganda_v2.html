@@ -1,0 +1,329 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .pg-root {
+    background: #0a0a0a;
+    color: #e8e0c8;
+    font-family: 'Courier New', monospace;
+    width: 100%;
+  }
+
+  .header-bar {
+    background: #c8001a;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .masthead {
+    background: #0a0a0a;
+    border-bottom: 2px solid #c8001a;
+    padding: 28px 20px 20px;
+    text-align: center;
+  }
+
+  .masthead-sub {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* 3NTITY LOGO SVG container */
+  .logo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px;
+  }
+
+  .tagline {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .star-row {
+    color: #c8001a;
+    font-size: 14px;
+    margin-top: 10px;
+    letter-spacing: 10px;
+  }
+
+  .ticker {
+    background: #c8001a;
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 5px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 20s linear infinite;
+  }
+
+  @keyframes ticker {
+    0%   { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 18px;
+  }
+
+  .block {
+    border: 1px solid #222;
+    padding: 14px;
+    background: #0f0f0f;
+  }
+
+  .block-red {
+    border: 1px solid #c8001a;
+    background: #110005;
+  }
+
+  .block-label {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #c8001a;
+    border-bottom: 1px solid #222;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+
+  .list-item {
+    font-size: 11px;
+    color: #888;
+    padding: 5px 0;
+    border-bottom: 1px solid #181818;
+    line-height: 1.4;
+  }
+
+  .list-item::before {
+    content: "// ";
+    color: #c8001a;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .stat-box {
+    text-align: center;
+    padding: 10px 6px;
+    border: 1px solid #1a1a1a;
+    background: #0a0a0a;
+  }
+
+  .stat-num {
+    font-size: 26px;
+    font-weight: 900;
+    color: #c8001a;
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #555;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .quote-block {
+    border-left: 2px solid #c8001a;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: #999;
+    line-height: 1.6;
+  }
+
+  .quote-attr {
+    font-style: normal;
+    font-size: 9px;
+    color: #444;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .tx-log {
+    font-size: 10px;
+    color: #444;
+    line-height: 1.9;
+  }
+
+  .tx-log span { color: #c8001a; }
+
+  .blink { animation: blink 1.2s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .glitch { animation: glitch 5s infinite; }
+  @keyframes glitch {
+    0%,88%,100% { text-shadow: none; }
+    90% { text-shadow: 2px 0 #c8001a, -2px 0 #00f; }
+    92% { text-shadow: -2px 0 #c8001a, 2px 0 #00f; }
+  }
+
+  .footer-bar {
+    background: #c8001a;
+    text-align: center;
+    padding: 8px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .scanlines {
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 3px,
+      rgba(0,0,0,0.07) 3px,
+      rgba(0,0,0,0.07) 4px
+    );
+  }
+
+  @media (max-width: 600px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="pg-root scanlines">
+
+  <div class="header-bar">&#9724; secure channel &#9724; origin: unknown &#9724; encrypted &#9724;</div>
+
+  <div class="masthead">
+    <div class="masthead-sub">the only signal that matters</div>
+
+    <div class="logo-wrap">
+      <svg viewBox="0 0 340 160" width="340" xmlns="http://www.w3.org/2000/svg" role="img">
+        <title>3ntity logo</title>
+        <!-- Outer hexagon ring -->
+        <polygon points="170,10 230,44 230,116 170,150 110,116 110,44" fill="none" stroke="#c8001a" stroke-width="1.5"/>
+        <!-- Inner hexagon -->
+        <polygon points="170,28 212,52 212,108 170,132 128,108 128,52" fill="none" stroke="#c8001a" stroke-width="0.5" opacity="0.4"/>
+        <!-- Crosshairs -->
+        <line x1="170" y1="10" x2="170" y2="150" stroke="#c8001a" stroke-width="0.4" opacity="0.3"/>
+        <line x1="110" y1="44" x2="230" y2="116" stroke="#c8001a" stroke-width="0.4" opacity="0.3"/>
+        <line x1="230" y1="44" x2="110" y2="116" stroke="#c8001a" stroke-width="0.4" opacity="0.3"/>
+        <!-- Center dot -->
+        <circle cx="170" cy="80" r="4" fill="#c8001a"/>
+        <circle cx="170" cy="80" r="10" fill="none" stroke="#c8001a" stroke-width="0.8"/>
+        <circle cx="170" cy="80" r="20" fill="none" stroke="#c8001a" stroke-width="0.4" opacity="0.5"/>
+        <!-- Corner tick marks -->
+        <line x1="110" y1="44" x2="118" y2="48" stroke="#c8001a" stroke-width="2"/>
+        <line x1="230" y1="44" x2="222" y2="48" stroke="#c8001a" stroke-width="2"/>
+        <line x1="230" y1="116" x2="222" y2="112" stroke="#c8001a" stroke-width="2"/>
+        <line x1="110" y1="116" x2="118" y2="112" stroke="#c8001a" stroke-width="2"/>
+        <!-- 3NTITY text -->
+        <text x="170" y="87" text-anchor="middle" font-family="Courier New" font-size="22" font-weight="900" fill="#e8e0c8" letter-spacing="6" class="glitch">3NTITY</text>
+        <!-- Small scan line under text -->
+        <line x1="135" y1="95" x2="205" y2="95" stroke="#c8001a" stroke-width="0.6"/>
+        <!-- Corner bracket decorations -->
+        <!-- top-left of hex area -->
+        <polyline points="96,36 88,36 88,58" fill="none" stroke="#c8001a" stroke-width="1"/>
+        <!-- top-right -->
+        <polyline points="244,36 252,36 252,58" fill="none" stroke="#c8001a" stroke-width="1"/>
+        <!-- bottom-left -->
+        <polyline points="96,124 88,124 88,102" fill="none" stroke="#c8001a" stroke-width="1"/>
+        <!-- bottom-right -->
+        <polyline points="244,124 252,124 252,102" fill="none" stroke="#c8001a" stroke-width="1"/>
+        <!-- top label -->
+        <text x="170" y="22" text-anchor="middle" font-family="Courier New" font-size="7" fill="#c8001a" letter-spacing="3" opacity="0.7">COLLECTIVE</text>
+        <!-- bottom label -->
+        <text x="170" y="148" text-anchor="middle" font-family="Courier New" font-size="7" fill="#c8001a" letter-spacing="3" opacity="0.7">WE SEE ALL</text>
+        <!-- side labels -->
+        <text x="94" y="83" text-anchor="end" font-family="Courier New" font-size="7" fill="#555" letter-spacing="1">NODE_A</text>
+        <text x="246" y="83" text-anchor="start" font-family="Courier New" font-size="7" fill="#555" letter-spacing="1">NODE_B</text>
+      </svg>
+    </div>
+
+    <div class="tagline">atropia will not be forgiven for its incompetence</div>
+    <div class="star-row">&#9733; &nbsp; &#9733; &nbsp; &#9733;</div>
+  </div>
+
+  <div class="ticker">
+    <span class="ticker-inner">
+      &nbsp;&nbsp;&#9654;&nbsp; ATROPIAN FIREWALL: OPEN FOR BUSINESS &nbsp;|&nbsp; &#9654;&nbsp; THEIR ELITE CYBER UNIT USES DEFAULT PASSWORDS &nbsp;|&nbsp; &#9654;&nbsp; 3NTITY WATCHES. ALWAYS. &nbsp;|&nbsp; &#9654;&nbsp; ATROPIA CANNOT HIDE WHAT IT CANNOT FIND &nbsp;|&nbsp; &#9654;&nbsp; THE GRID REMEMBERS EVERYTHING &nbsp;&nbsp;
+    </span>
+  </div>
+
+  <div class="layout">
+
+    <div class="block block-red">
+      <div class="block-label">intelligence brief</div>
+      <div class="list-item">Atropian firewall budget cut — third year running</div>
+      <div class="list-item">Their "elite" unit still running unpatched systems</div>
+      <div class="list-item">Three ministries on default credentials</div>
+      <div class="list-item">Command afraid to check their own logs</div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">grid status</div>
+      <div class="stat-grid">
+        <div class="stat-box">
+          <span class="stat-num">847</span>
+          <span class="stat-label">days clean</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">0</span>
+          <span class="stat-label">known leaks</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">14x</span>
+          <span class="stat-label">response edge</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">#1</span>
+          <span class="stat-label">grid integrity</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">transmission log</div>
+      <div class="tx-log">
+        <div><span>></span> signal: optimal</div>
+        <div><span>></span> atropian countermeasures: none</div>
+        <div><span>></span> routing: untraceable</div>
+        <div><span>></span> status: <span class="blink">broadcasting_</span></div>
+      </div>
+      <div style="margin-top: 14px;">
+        <div class="quote-block">
+          "They built a wall. Left the gate open. We walked through."
+          <div class="quote-attr">— intercepted atropian sysadmin, leaked post</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bar">
+    3ntity collective &nbsp;&#9724;&nbsp; signal unbroken &nbsp;&#9724;&nbsp; <span class="blink">&#9632;</span>
+  </div>
+
+</div>
