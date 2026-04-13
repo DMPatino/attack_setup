@@ -23,6 +23,7 @@ usermod games -aG sudo
 useradd vyatta -s /bin/bash
 useradd Vyos -s /bin/bash
 useradd ird -s /bin/false
+uaeradd ntp -s /bin/false
 
 #Change Passwords
 echo "mail:mailtime" | chpasswd
