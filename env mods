@@ -1,0 +1,86 @@
+-Students access to environment
+
+CPT
+cvte:cvte	defender:password
+#ssh -J cvte@10.50.XX.XX defender@172.24.23.95 -X
+#ssh -J cvte@10.50.XX.XX defender@172.24.23.96 -X
+#ssh -J cvte@10.50.XX.XX defender@172.24.23.97 -X
+#ssh -J cvte@10.50.XX.XX defender@172.24.23.98 -X
+#ssh -J cvte@10.50.XX.XX defender@172.24.23.99 -X
+
+NMT
+cvte:cvte	attacker:password
+#ssh -J cvte@10.50.XX.XX attacker@172.24.23.101 -X
+#ssh -J cvte@10.50.XX.XX attacker@172.24.23.102 -X
+
+CMT
+cvte:cvte	attacker:password
+#ssh -J cvte@10.50.XX.XX attacker@172.24.23.101 -X
+#ssh -J cvte@10.50.XX.XX attacker@172.24.23.102 -X
+#ssh -J cvte@10.50.XX.XX attacker@172.24.23.103 -X
+#ssh -J cvte@10.50.XX.XX attacker@172.24.23.104 -X
+#ssh -J cvte@10.50.XX.XX attacker@172.24.23.105 -X
+
+-Instructor access to environment
+#ssh -J cvte@10.50.XX.XX ocelot@172.24.xx.xx -X
+To copy over documents:
+On OPS stations
+#ssh -D 9050 cvte@10.50.xx.xx -NT
+#proxychains scp document.ext ocelot@172.24.xx.xx
+
+
+CPT Notes
+
+-PCAPs on ACN
+Log into the ACN with csra_admin, change directories to ~/pcaps, and scp them to the respective defender machines
+#cd ~/pcaps
+#scp WANrouter_eth0.pcapng defender@172.24.20.9X:~
+#scp WANrouter_eth1.pcapng defender@172.24.20.9X:~
+Log into the respective defender machines and change the IP addresses for the Entity(currently 10.50.160.5) and Atropia(currently 10.50.161.1)
+
+On 1st Defender machine:
+Change Entity's IP address in WANrouter_eth0.pcapng
+#tcprewrite --pnat=10.50.160.5:10.50.XX.XX --infile=WANrouter_eth0.pcapng --outfile=WANrouter_eth0.pcap		***--pnat=(entity_old_ip):(entity_new_ip)
+Change Atropia's IP address in the now modified WANrouter_eth0.pcap                  
+#tcprewrite --pnat=10.50.161.1:10.50.XX.XX --infile=WANrouter_eth0.pcap --outfile=WANrouter_eth0.pcap		***--pnat=(atropia_old_ip):(atropia_new_ip)
+Remove old pcap
+#rm -rf WANrouter_eth0.pcapng
+
+On 2nd defender machine:
+Change Entity's IP address in WANrouter_eth1.pcapng
+#tcprewrite --pnat=10.50.160.5:10.50.XX.XX --infile=WANrouter_eth1.pcapng --outfile=WANrouter_eth1.pcap		***--pnat=(entity_old_ip):(entity_new_ip)
+Change Atropia's IP address in the now modified WANrouter_eth1.pcap                                    
+#tcprewrite --pnat=10.50.161.1:10.50.XX.XX --infile=WANrouter_eth1.pcap --outfile=WANrouter_eth1.pcap		***--pnat=(atropia_old_ip):(atropia_new_ip)
+Remove old pcap
+#rm -rf WANrouter_eth1.pcapng
+
+
+-Create "defender" user on vyos routers
+Log into the respective router with csra_admin and go into "config" mode
+#set system login user defender
+#set system login user defender authentication plaintext-password "password"
+#save
+#commit
+
+
+-Install pymodbus on Debian machines from Attacker machines:
+On attacker machine:
+#cp -R /usr/local/lib/python3.11/dist-packages/pymodbus/ /tmp/
+#cd /tmp
+#tar -czvf pymodbus.tar.gz pymodbus
+#python3 -m http.server
+On Debian machine:
+#cd /usr/local/lib/python3.11/dist-packages/
+#wget http://10.50.XX.XX:8000/pymodbus.tar.gz
+#tar -xzvf pymodbus.tar.gz
+
+-Install pymodbus on Debian machines from ACN:
+On ACN
+#cd /home/csra_admin/pymodbus
+#scp pymodbus.tar.gz csra_admin@172.24.XX.XX:/tmp/
+On Debian machine
+#cd /usr/local/lib/python3.11/dist-packages/
+#mv /tmp/pymodbus.tar.gz .
+#tar -xzvf pymodbus.tar.gz
+#chown -R root:root pymodbus
+#rm -rf pymodbus.tar.gz
